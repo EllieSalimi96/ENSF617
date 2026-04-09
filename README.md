@@ -1,136 +1,106 @@
-\# Lithium-ion Battery SOH Estimation using WOA-CNN-LSTM
+# 🔋 Lithium-ion Battery SOH Estimation using WOA-CNN-LSTM
 
+---
 
+## **📌 Overview**
 
-\## Overview
+This project presents a **data-driven framework** for estimating the **State of Health (SOH)** of lithium-ion batteries using a hybrid deep learning architecture. The proposed approach integrates:
 
+* **Convolutional Neural Networks (CNN)** for feature extraction
+* **Long Short-Term Memory (LSTM)** for temporal modeling
+* **Whale Optimization Algorithm (WOA)** for hyperparameter optimization
 
+The objective is to achieve **high-accuracy SOH prediction** while maintaining computational efficiency for real-world **Battery Management Systems (BMS)**.
 
-This project develops a data-driven framework for estimating the State of Health (SOH) of lithium-ion batteries using deep learning and metaheuristic optimization. The approach combines Convolutional Neural Networks (CNN), Long Short-Term Memory (LSTM), and the Whale Optimization Algorithm (WOA) to improve prediction accuracy on battery degradation data.
+---
 
+## **📂 Dataset**
 
+The model is evaluated on the **NASA Prognostics Center of Excellence (PCoE)** lithium-ion battery dataset:
 
-\## Dataset
+* Batteries: **B0005, B0006, B0007**
+* Data type: Charge–discharge cycle measurements
 
+🔗 **Source:**
+https://data.nasa.gov/dataset/Li-ion-Battery-Aging-Datasets
 
-
-The model is evaluated on the NASA Prognostics Center of Excellence lithium-ion battery dataset (B0005, B0006, B0007), which contains charge–discharge cycle data.
-
-
-
-Download dataset:
-
-https://ti.arc.nasa.gov/tech/dash/groups/pcoe/prognostic-data-repository/
-
-
-
-Place data in:
-
-
+📁 **Setup:**
 
 ```
-
 data/raw/
-
 ```
 
+---
 
+## **⚙️ Methodology**
 
-\## Methodology
+### **1. Feature Engineering**
 
+* Extraction of **four health factors (HF1–HF4)** from raw signals
+* Captures key degradation characteristics
 
+### **2. Data Preprocessing**
 
-The workflow consists of:
+* **Outlier detection:** Local Outlier Factor (LOF)
+* **Data cleaning:** Linear interpolation
+* **Validation:** Pearson & Spearman correlation analysis
 
+### **3. Model Architectures**
 
+* **Baseline:** Plain LSTM
+* **Hybrid:** CNN-LSTM
+* **Optimized:** WOA-CNN-LSTM
 
-\* Extraction of four health factors (HF1–HF4) from charge/discharge cycles
+### **4. Optimization**
 
-\* Outlier detection using Local Outlier Factor (LOF)
+WOA is used to tune:
 
-\* Data cleaning via linear interpolation
+* Learning rate
+* Hidden layer size
+* Batch size
+* Dropout rate
 
-\* Correlation analysis (Pearson and Spearman) for feature validation
+---
 
-\* Model development and comparison:
+## **📊 Results**
 
+The **WOA-CNN-LSTM** model consistently outperforms baseline models:
 
+* Significant reduction in **RMSE, MAE, and MAPE**
+* Up to **~90% improvement** over standard LSTM
+* Accurate tracking of long-term degradation trends
 
-&#x20; \* Plain LSTM (baseline)
+---
 
-&#x20; \* CNN-LSTM
-
-&#x20; \* WOA-optimized CNN-LSTM
-
-
-
-The CNN layers extract local features, while LSTM captures temporal dependencies. WOA is used to optimize hyperparameters such as learning rate, hidden size, batch size, and dropout.
-
-
-
-\## Results
-
-
-
-The WOA-CNN-LSTM model consistently outperforms baseline models across all batteries.
-
-
-
-\* Significant reduction in RMSE, MAE, and MAPE
-
-\* Up to \~90% improvement over Plain LSTM
-
-\* Accurate tracking of battery degradation trends
-
-
-
-\## Repository Structure
-
-
-
-\* `src/` → model implementation
-
-\* `data/` → dataset (or download instructions)
-
-\* `figures/` → report figures
-
-\* `report/` → LaTeX source files
-
-\* `results/` → plots and evaluation outputs
-
-
-
-\## How to Run
-
-
+## **📁 Repository Structure**
 
 ```
+src/        → Model implementation  
+data/       → Dataset (or download instructions)  
+figures/    → Report figures  
+report/     → LaTeX source files  
+results/    → Output plots and evaluation results  
+```
 
+---
+
+## **🚀 How to Run**
+
+```
 pip install -r requirements.txt
-
 python src/main.py
-
 ```
 
+---
 
+## **⚠️ Limitations**
 
-\## Limitations
+* Limited to **three batteries**
+* Evaluated on **laboratory-controlled data only**
 
+---
 
+## **👩‍💻 Authors**
 
-\* Evaluated on only three batteries
-
-\* Tested on laboratory data only (no real-world validation)
-
-
-
-\## Author
-
-
-
-Elahe Salimi
-
-Pardis Ahmadzadeh
-
-
-
+* **Elahe Salimi**
+* **Pardis Ahmadzadeh**
