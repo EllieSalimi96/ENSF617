@@ -21,14 +21,8 @@ The model is evaluated on the **NASA Prognostics Center of Excellence (PCoE)** l
 * Batteries: **B0005, B0006, B0007**
 * Data type: Charge–discharge cycle measurements
 
-🔗 **Source:**
-https://data.nasa.gov/dataset/Li-ion-Battery-Aging-Datasets
-
-📁 **Setup:**
-
-```
-data/raw/
-```
+🔗 **Official Source:**
+https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip
 
 ---
 
@@ -76,19 +70,10 @@ The **WOA-CNN-LSTM** model consistently outperforms baseline models:
 
 ```
 src/        → Model implementation  
-data/       → Dataset (or download instructions)  
+data/       → Dataset   
 figures/    → Report figures  
-report/     → LaTeX source files  
+report/     → Report PDF file  
 results/    → Output plots and evaluation results  
-```
-
----
-
-## **🚀 How to Run**
-
-```
-pip install -r requirements.txt
-python src/main.py
 ```
 
 ---
@@ -98,9 +83,3 @@ python src/main.py
 * Limited to **three batteries**
 * Evaluated on **laboratory-controlled data only**
 
----
-
-## **👩‍💻 Authors**
-
-* **Elahe Salimi**
-* **Pardis Ahmadzadeh**
